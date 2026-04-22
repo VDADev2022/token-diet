@@ -61,6 +61,38 @@ Encodes complex rules and JSON schemas into short, referenceable codes (R1, R2, 
 
 ---
 
+## 🚀 Integration
+
+To leverage the Token-Diet skill in your AI workflows, follow these integration guidelines:
+
+### For Manus Agents
+
+Manus agents can directly utilize the Token-Diet skill by referencing its name. When you want to apply token reduction techniques, simply invoke the skill with the `/token-diet` command, followed by your prompt or specific instructions. The agent will automatically apply the defined strategies (e.g., Caveman Ultra, caching, summarization) to optimize token usage.
+
+**Example Usage within Manus:**
+
+```
+/token-diet Analyze the provided log data for anomalies and summarize key findings concisely.
+```
+
+### For Claude and Other LLMs (via PCodec/Gateway)
+
+For direct integration with Claude or other LLMs, the Token-Diet principles are best applied at the gateway or orchestration layer using the PCodec (Prompt-Codec) mechanism. This involves an intermediary service that intercepts and transforms prompts before sending them to the LLM.
+
+1.  **Implement a Gateway**: Set up a proxy or gateway service that sits between your application and the LLM API.
+2.  **Apply PCodec Rules**: Configure the gateway to apply the Token-Diet's PCodec rules. This means defining short codes (e.g., `R1`, `S1`) that expand into full, but optimized, instructions or schema definitions.
+3.  **Integrate Advanced Techniques**: The gateway can also manage prompt caching, rolling summarization, tool call batching, and conditional model routing before the prompt reaches the LLM.
+
+**Example Prompt (after gateway processing):**
+
+```
+User: R1: Analyze data. Summarize. S1: JSON output.
+```
+
+(Where `R1` expands to a Caveman Ultra compressed instruction and `S1` ensures a structured JSON output.)
+
+---
+
 ## 🧑‍💻 Author
 
 *   **Name**: Vijay Dixon
