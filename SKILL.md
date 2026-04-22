@@ -65,3 +65,8 @@ Encode complex rules and schemas into short codes (R1, R2, S1). Can also integra
 5.  **Compress** linguistically (Caveman style).
 
 ---
+
+## Author
+
+*   **Name**: Vijay Dixon
+*   **Email**: vijaydixon2026+aitools@gmail.com
