@@ -65,6 +65,8 @@ Encodes complex rules and JSON schemas into short, referenceable codes (R1, R2, 
 
 To leverage the Token-Diet skill in your AI workflows, follow these integration guidelines:
 
+### Download the SKILL.md file and upload to AI tool (manus) as a skill, some tools may require it to be downloaded as a zip file (claude)
+
 ### For Manus Agents
 
 Manus agents can directly utilize the Token-Diet skill by referencing its name. When you want to apply token reduction techniques, simply invoke the skill with the `/token-diet` command, followed by your prompt or specific instructions. The agent will automatically apply the defined strategies (e.g., Caveman Ultra, caching, summarization) to optimize token usage.
