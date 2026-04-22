@@ -46,6 +46,9 @@ Encodes complex rules and JSON schemas into short, referenceable codes (R1, R2, 
 | **Cost** | **Lowest** | High | Mid |
 | **Scope** | Full Stack | Context Only | Token Pruning |
 
+
+<img width="3600" height="2100" alt="image" src="https://github.com/user-attachments/assets/66f26d37-7238-4105-8c92-5be0443d460a" />
+
 ---
 
 ## 🛠️ Usage Checklist
@@ -57,9 +60,6 @@ Encodes complex rules and JSON schemas into short, referenceable codes (R1, R2, 
 5.  **Compress** instructions using **Caveman Ultra** linguistic rules.
 
 ---
-
-<img width="3600" height="2100" alt="image" src="https://github.com/user-attachments/assets/66f26d37-7238-4105-8c92-5be0443d460a" />
-
 
 ## 🧑‍💻 Author
 
