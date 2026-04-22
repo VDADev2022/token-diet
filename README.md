@@ -58,6 +58,9 @@ Encodes complex rules and JSON schemas into short, referenceable codes (R1, R2, 
 
 ---
 
+<img width="3600" height="2100" alt="image" src="https://github.com/user-attachments/assets/66f26d37-7238-4105-8c92-5be0443d460a" />
+
+
 ## 🧑‍💻 Author
 
 *   **Name**: Vijay Dixon
