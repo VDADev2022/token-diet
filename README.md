@@ -36,7 +36,21 @@ v3.0 treats token optimization as an engineering discipline. It mandates:
 
 ---
 
-## 📊 Effectiveness & ROI (Realistic)
+## 📊 Framework Comparison
+
+| Feature | Caveman Skill | Token-Diet v2.0 | Token-Diet v3.0 (Current) |
+| :--- | :--- | :--- | :--- |
+| **Primary Focus** | Linguistic Compression | Ad-hoc Optimization Techniques | **Production-Ready Pipeline** |
+| **Execution** | Manual / Ad-hoc | Manual / Ad-hoc | **Structured & Ordered** |
+| **Context Mgmt** | None | Rolling Summarization | **Retrieval Pruning + Stateful Memory** |
+| **Compression** | Aggressive (Prose) | Aggressive (Prose) | **Surgical (Last-Mile)** |
+| **Safety** | None | Basic Checklist | **Engineering Guardrails & Alerts** |
+| **Measurement** | None | Qualitative | **Quantitative (Metrics-Driven)** |
+| **Typical Reduction** | ~75% (on prose) | ~20x (ideal conditions) | **~50-80% (realistic, stable)** |
+
+---
+
+## 📈 Effectiveness & ROI (v3.0 Realistic)
 
 Token-Diet v3.0 delivers **multiplicative** benefits, leading to significant cost and latency improvements while maintaining output quality.
 
