@@ -1,71 +1,76 @@
-# 🥗 Token-Diet: Advanced LLM Prompt Optimization Framework
+# 🥗 Token-Diet v3.0: Production-Ready LLM Prompt Optimization Framework
 
-**Token-Diet** is a comprehensive framework designed to minimize token consumption in Large Language Model (LLM) prompts without sacrificing output quality. By integrating linguistic, algorithmic, and architectural patterns, Token-Diet enables up to **20x reduction** in token usage, significantly lowering API costs and improving inference latency.
-
----
-
-## 🚀 Key Features
-
-### 1. ⚡ Prompt Caching (Static & Ephemeral)
-Leverage provider-level caching (e.g., Anthropic's `cache_control`) to mark static system prompts or large context blocks.
-*   **Impact**: Reduces repeat turn costs by up to **90%**.
-*   **Best for**: Multi-turn agentic workflows and stable system instructions.
-
-### 2. 🔄 Rolling Conversational Summarization
-Prevents linear context bloat by maintaining a fixed window of recent history while summarizing older turns.
-*   **Impact**: Maintains performance in long-running sessions without hitting context limits.
-*   **Mechanism**: Automatically condenses turns 1 to (N-6) into a concise summary block.
-
-### 3. 📦 Tool Call Batching
-Optimizes agentic loops by grouping multiple tool requests into a single round-trip.
-*   **Impact**: Minimizes redundant context re-reads and reduces total input tokens.
-*   **Example**: `get_users(ids: list[str])` instead of multiple `get_user(id)` calls.
-
-### 4. 🚦 Conditional Model Routing
-Intelligently dispatches tasks to the most cost-effective model based on complexity.
-*   **Simple Tasks**: Routed to lightweight models (e.g., Haiku, GPT-4o-mini).
-*   **Complex Tasks**: Routed to high-reasoning models (e.g., Opus, GPT-4o).
-
-### 5. 🦴 Linguistic Compression (Caveman Ultra)
-Applies extreme linguistic pruning to instructions and queries.
-*   **Impact**: Cuts token usage by **~75%** while retaining 100% technical accuracy.
-*   **Rules**: Strips articles, fillers, and conjunctions; uses abbreviations and causal arrows (X → Y).
-
-### 6. 🛠️ PCodec (Prompt-Codec) & Schema-First
-Encodes complex rules and JSON schemas into short, referenceable codes (R1, R2, S1).
-*   **Mechanism**: Gateway-level expansion ensures the model receives full context only when necessary.
+**Token-Diet v3.0** is a comprehensive, production-grade framework designed to minimize token consumption in Large Language Model (LLM) prompts without sacrificing output quality. It evolves from a collection of techniques into a **structured pipeline** with engineering guardrails and measurable outcomes. By integrating linguistic, algorithmic, and architectural patterns, Token-Diet enables up to **20x reduction** in token usage, significantly lowering API costs and improving inference latency.
 
 ---
 
-## 📊 Effectiveness Comparison
+## 🚀 Key Innovations in v3.0
 
-| Feature | Token-Diet v2.0 | Standard RAG | LLMLingua-2 |
-| :--- | :--- | :--- | :--- |
-| **Compression** | **Ultra (20x+)** | Low (1.2x) | High (10x) |
-| **Latency** | **Lowest** | High | Mid |
-| **Cost** | **Lowest** | High | Mid |
-| **Scope** | Full Stack | Context Only | Token Pruning |
+### 1. ⚙️ Optimized Execution Flow (Order Matters)
+Token-Diet v3.0 introduces a strict, optimized pipeline for token processing:
 
+`Query → Retrieve → Prune → Cache → Route → Build Prompt → Compress → Call LLM → Measure → Update State`
 
-<img width="3600" height="2100" alt="image" src="https://github.com/user-attachments/assets/66f26d37-7238-4105-8c92-5be0443d460a" />
+This order ensures maximum efficiency by eliminating waste early (Pruning) before costly decisions like caching or routing, and applying linguistic compression as a final, surgical step.
+
+### 2. ✂️ Retrieval Pruning (Highest ROI)
+Never send unnecessary tokens to your LLM. This new feature implements a robust pruning pipeline (`dedupe → sentence-trim → topK`) to filter irrelevant context from retrieval results.
+*   **Impact**: Achieves **30–60% token reduction** at the source, with zero quality loss if implemented correctly.
+*   **Benefit**: Significantly reduces input context before it even reaches the LLM, maximizing the value of each token.
+
+### 3. 🧠 Stateful Memory (Structured Context Management)
+Replaces naive conversational summarization with **structured JSON state**. This allows the LLM to reason over precise facts and constraints, preventing 
+context drift and ensuring accurate reasoning.
+*   **Mechanism**: State is structured as JSON (`facts`, `constraints`, `open_tasks`) with clear regeneration triggers.
+
+### 4. 🔪 Surgical Linguistic Compression (Last-Mile Only)
+While retaining the power of "Caveman Ultra," v3.0 refines its application as a **last-mile optimization**. Crucially, it introduces **strict guardrails**:
+*   **DO NOT compress**: Code, JSON schemas, legal/safety text, URLs, or identifiers.
+*   **Benefit**: ~15% token reduction on prose prompts, applied safely and surgically to prevent syntax errors or semantic loss.
+
+### 5. 🛡️ Engineering Guardrails & Quantitative Measurement
+v3.0 treats token optimization as an engineering discipline. It mandates:
+*   **Tracking**: `tokens_in`, `tokens_out`, `latency_ms`, `cache_hit_rate`, `cost_usd` per request.
+*   **Alerts**: Proactive notifications for context bloat, low cache hit rates, or cost spikes.
+*   **Safety Guards**: A framework to diagnose and recover from common issues like quality drops, hallucinations, or over-pruning, with a "Golden Rule": *If unsure, disable and rerun to measure the difference.*
+
+---
+
+## 📊 Effectiveness & ROI (Realistic)
+
+Token-Diet v3.0 delivers **multiplicative** benefits, leading to significant cost and latency improvements while maintaining output quality.
+
+| Metric | Target | Conditions |
+| :--- | :--- | :--- |
+| **Token Reduction** | **50–80%** | All 9 steps applied in order |
+| **Latency** | **↓20–50%** | Caching + routing active |
+| **Cost** | **↓40–75%** | Routing to smaller models + cache hits >70% |
+| **Quality** | **Stable** | Guards enforced; no compression on code/schema/legal |
+
+**Typical Breakdown:**
+*   **Pruning**: 30–40% reduction (Highest impact on RAG).
+*   **Caching**: 20–30% reduction (if reuse >50%).
+*   **Routing**: 30–50% cost reduction (simple tasks to cheap model).
+*   **Compression**: 10–15% reduction (prose only).
 
 ---
 
 ## 🛠️ Usage Checklist
 
-1.  **Cache** static system prompts to save on repeat turns.
-2.  **Summarize** conversation history once it exceeds token thresholds.
-3.  **Batch** tool calls to reduce API round-trips.
-4.  **Route** simple extraction/formatting tasks to cheaper models.
-5.  **Compress** instructions using **Caveman Ultra** linguistic rules.
+1.  **Retrieve & Prune**: Filter irrelevant context before prompt assembly.
+2.  **Cache**: Identify and cache static system prompts and reusable blocks.
+3.  **Route**: Direct tasks to the most cost-effective LLM based on complexity.
+4.  **Batch**: Group tool calls and data operations to reduce API round-trips.
+5.  **Stateful Memory**: Use structured JSON for dynamic context, regenerating as needed.
+6.  **Compress**: Apply linguistic compression only as a last-mile step on safe text.
+7.  **Measure**: Implement comprehensive tracking for tokens, latency, and cost.
+8.  **Guard**: Establish safety guardrails and alerts to prevent silent failures.
 
 ---
 
 ## 🚀 Integration
 
 To leverage the Token-Diet skill in your AI workflows, follow these integration guidelines:
-
-### Download the SKILL.md file and upload to AI tool (manus) as a skill, some tools may require it to be downloaded as a zip file (claude)
 
 ### For Manus Agents
 
